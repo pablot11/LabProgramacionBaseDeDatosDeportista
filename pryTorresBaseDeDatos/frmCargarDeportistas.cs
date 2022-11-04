@@ -13,11 +13,16 @@ namespace pryTorresBaseDeDatos
 {
     public partial class frmCargarDeportistas : Form
     {
-        public OleDbConnection conexionBase;
-        public OleDbCommand queQuieroDeLaBase;
-        public OleDbDataReader lectorDeConsultas;
 
-        string varRutaAccesoBD = "Provider = Microsoft.ACE.OLEDB.12.0;Data Source=" + "DEPORTE.accdb";
+        //Creacion de objetos
+        //Nos permite conectar a la base de datos
+        private OleDbConnection conexionBd = new OleDbConnection();
+        //Con este objeto enviamos una orden a la BD
+        private OleDbCommand comandoBd = new OleDbCommand();
+        //Nos sirve para adaptar los datos de la BD a datos reconocidos por .NET
+        private OleDbDataAdapter AdaptadorDeDatosBd = new OleDbDataAdapter();
+        //variable para indicar la ruta de la BD
+        private string varRutaAccesoBD = "Provider = Microsoft.ACE.OLEDB.12.0;Data Source=" + "DEPORTE.accdb";
         public frmCargarDeportistas()
         {
             InitializeComponent();
@@ -30,27 +35,27 @@ namespace pryTorresBaseDeDatos
 
         private void btnCargarDeportista_Click(object sender, EventArgs e)
         {
-            string CodigoDeportista = mskCodigoDeportista.Text;
+            string CodigoDeportista = txtCodigoDeportista.Text;
             string Nombre = txtNombreDeportista.Text;
             string Apellido = txtApellidoDeportista.Text;
             string Direccion = Convert.ToString(txtDireccionDeportista.Text);
-            string Telefono = txtTelefonoDeportista.Text;
-            string Edad = txtEdadDeportista.Text;
+            string Telefono = mskTelefonoDeportista.Text;
+            string Edad = mskEdadDeportista.Text;
             string Deporte = Convert.ToString(lstDeporteDeportista.SelectedItem);
             try
             {
-                conexionBase = new OleDbConnection(varRutaAccesoBD);
-                conexionBase.Open();
+                conexionBd = new OleDbConnection(varRutaAccesoBD);
+                conexionBd.Open();
 
-                queQuieroDeLaBase = new OleDbCommand();
+                comandoBd = new OleDbCommand();
 
-                queQuieroDeLaBase.Connection = conexionBase;
-                queQuieroDeLaBase.CommandType = CommandType.Text;
+                comandoBd.Connection = conexionBd;
+                comandoBd.CommandType = CommandType.Text;
 
-                queQuieroDeLaBase.CommandText = "INSERT INTO" + " DEPORTISTA ([CODIGO DEPORTISTA], [NOMBRE], [APELLIDO], [DIRECCION], [TELEFONO], [EDAD], [DEPORTE])" +
+                comandoBd.CommandText = "INSERT INTO" + " DEPORTISTA ([CODIGO DEPORTISTA], [NOMBRE], [APELLIDO], [DIRECCION], [TELEFONO], [EDAD], [DEPORTE])" +
                     " VALUES ('" + CodigoDeportista + "','" + Nombre + "','" + Apellido + "','" + Direccion + "','" + Telefono + "','" + Edad + "','" + Deporte + "')";
 
-                queQuieroDeLaBase.ExecuteNonQuery();
+                comandoBd.ExecuteNonQuery();
                 MessageBox.Show("Deportista Cargado");
             }
             catch (Exception mensaje)
@@ -59,7 +64,7 @@ namespace pryTorresBaseDeDatos
             }
             LimpiarControles();
 
-            conexionBase.Close();
+            conexionBd.Close();
         }
 
         private void btncargarrr_Click(object sender, EventArgs e)
@@ -69,19 +74,19 @@ namespace pryTorresBaseDeDatos
 
         private void LimpiarControles()
         {
-            mskCodigoDeportista.Text = "";
+            txtCodigoDeportista.Text = "";
             txtNombreDeportista.Text = "";
             txtApellidoDeportista.Text = "";
             txtDireccionDeportista.Text = "";
-            txtEdadDeportista.Text = "";
-            txtTelefonoDeportista.Text = "";
+            mskEdadDeportista.Text = "";
+            mskTelefonoDeportista.Text = "";
             lstDeporteDeportista.SelectedIndex = -1;
 
         }
         private void ChequearControles()
         {
-            if (mskCodigoDeportista.Text != "" && txtNombreDeportista.Text != "" && txtApellidoDeportista.Text != "" && txtDireccionDeportista.Text != "" 
-                && txtEdadDeportista.Text != "" && txtTelefonoDeportista.Text != "" && lstDeporteDeportista.SelectedIndex != -1)
+            if (txtCodigoDeportista.Text != "" && txtNombreDeportista.Text != "" && txtApellidoDeportista.Text != "" && txtDireccionDeportista.Text != "" 
+                && mskEdadDeportista.Text != "" && mskTelefonoDeportista.Text != "" && lstDeporteDeportista.SelectedIndex != -1)
             {
                 btnCargarDeportista.Enabled = true;    
             }
@@ -130,6 +135,41 @@ namespace pryTorresBaseDeDatos
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void txtCodigoDeportista_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //keychar indica si la tecla presionada ya que recoge el numero ascii de la tecla y verifica que no sea numeros,caracteres especiales
+            if ((e.KeyChar >= 32 && e.KeyChar <= 64) || (e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
+            {
+                //El handled nos permite ingresar el valor o sea visualizar la letra
+                e.Handled = true;
+            }
+        }
+
+        private void txtCodigoDeportista_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNombreDeportista_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //keychar indica si la tecla presionada ya que recoge el numero ascii de la tecla y verifica que no sea numeros,caracteres especiales
+            if ((e.KeyChar >= 32 && e.KeyChar <= 64) || (e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
+            {
+                //El handled nos permite ingresar el valor o sea visualizar la letra
+                e.Handled = true;
+            }
+        }
+
+        private void txtApellidoDeportista_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //keychar indica si la tecla presionada ya que recoge el numero ascii de la tecla y verifica que no sea numeros,caracteres especiales
+            if ((e.KeyChar >= 32 && e.KeyChar <= 64) || (e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
+            {
+                //El handled nos permite ingresar el valor o sea visualizar la letra
+                e.Handled = true;
+            }
         }
     }   
 }

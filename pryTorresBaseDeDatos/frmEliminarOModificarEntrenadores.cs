@@ -67,9 +67,7 @@ namespace pryTorresBaseDeDatos
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            txtDeporteEntrenador.ReadOnly = false;
-            txtDireccionEntrenador.ReadOnly = false;
-            txtProvinciaEntrenador.ReadOnly = false;
+            NoLecturaCajasDeTexto();
             btnModificar.Enabled = false;
             btnBuscarEntrenador.Enabled = false;
             mskCodigoEntrenadorBusqueda.ReadOnly = true;
@@ -105,6 +103,7 @@ namespace pryTorresBaseDeDatos
             btnBuscarEntrenador.Enabled = true;
             btnEliminarEntrenador.Enabled = true;
             btnGuardar.Enabled = false;
+            LecturaCajasDeTexto();
         }
 
         private void LimpiarControles()
@@ -128,6 +127,40 @@ namespace pryTorresBaseDeDatos
             else
             {
                 btnBuscarEntrenador.Enabled = false;
+            }
+        }
+
+        private void txtProvinciaEntrenador_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //keychar indica si la tecla presionada ya que recoge el numero ascii de la tecla y verifica que no sea numeros,caracteres especiales
+            if ((e.KeyChar > 32 && e.KeyChar <= 64) || (e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
+            {
+                //El handled nos permite ingresar el valor o sea visualizar la letra
+                e.Handled = true;
+            }
+        }
+
+        private void LecturaCajasDeTexto()
+        {
+            txtDeporteEntrenador.ReadOnly = true;
+            txtDireccionEntrenador.ReadOnly = true;
+            txtProvinciaEntrenador.ReadOnly = true;
+
+        }
+        private void NoLecturaCajasDeTexto()
+        {
+            txtDeporteEntrenador.ReadOnly = false;
+            txtDireccionEntrenador.ReadOnly = false;
+            txtProvinciaEntrenador.ReadOnly = false;
+        }
+
+        private void txtDeporteEntrenador_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //keychar indica si la tecla presionada ya que recoge el numero ascii de la tecla y verifica que no sea numeros,caracteres especiales
+            if ((e.KeyChar > 32 && e.KeyChar <= 64) || (e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
+            {
+                //El handled nos permite ingresar el valor o sea visualizar la letra
+                e.Handled = true;
             }
         }
     }

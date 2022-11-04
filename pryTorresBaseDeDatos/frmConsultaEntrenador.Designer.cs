@@ -42,14 +42,14 @@
             this.dgvEntrenadoresConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEntrenadoresConsulta.Location = new System.Drawing.Point(6, 19);
             this.dgvEntrenadoresConsulta.Name = "dgvEntrenadoresConsulta";
-            this.dgvEntrenadoresConsulta.Size = new System.Drawing.Size(573, 150);
+            this.dgvEntrenadoresConsulta.Size = new System.Drawing.Size(645, 242);
             this.dgvEntrenadoresConsulta.TabIndex = 0;
             // 
             // btnListar
             // 
-            this.btnListar.Location = new System.Drawing.Point(371, 198);
+            this.btnListar.Location = new System.Drawing.Point(440, 285);
             this.btnListar.Name = "btnListar";
-            this.btnListar.Size = new System.Drawing.Size(226, 23);
+            this.btnListar.Size = new System.Drawing.Size(229, 23);
             this.btnListar.TabIndex = 1;
             this.btnListar.Text = "Listar";
             this.btnListar.UseVisualStyleBackColor = true;
@@ -60,17 +60,17 @@
             this.mrcEntrenadores.Controls.Add(this.dgvEntrenadoresConsulta);
             this.mrcEntrenadores.Location = new System.Drawing.Point(12, 12);
             this.mrcEntrenadores.Name = "mrcEntrenadores";
-            this.mrcEntrenadores.Size = new System.Drawing.Size(585, 180);
+            this.mrcEntrenadores.Size = new System.Drawing.Size(657, 267);
             this.mrcEntrenadores.TabIndex = 2;
             this.mrcEntrenadores.TabStop = false;
             this.mrcEntrenadores.Text = "Entrenadores";
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(12, 198);
+            this.btnSalir.Location = new System.Drawing.Point(12, 285);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(226, 23);
-            this.btnSalir.TabIndex = 3;
+            this.btnSalir.Size = new System.Drawing.Size(229, 23);
+            this.btnSalir.TabIndex = 2;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
@@ -79,7 +79,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(609, 232);
+            this.ClientSize = new System.Drawing.Size(674, 328);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.mrcEntrenadores);
             this.Controls.Add(this.btnListar);

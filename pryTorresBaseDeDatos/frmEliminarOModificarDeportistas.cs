@@ -24,7 +24,7 @@ namespace pryTorresBaseDeDatos
 
         private void btnBuscarDeportista_Click(object sender, EventArgs e)
         {
-            string varCodigo = mskCodigoDeportistaBusqueda.Text;
+            string varCodigo = txtCodigoDeportistaBusqueda.Text;
             clsDeportista objclsDeportista = new clsDeportista();
             objclsDeportista.Buscar(varCodigo);
             if (objclsDeportista.CDeportista != varCodigo)
@@ -42,8 +42,8 @@ namespace pryTorresBaseDeDatos
                 txtNombreDeportista.Text = objclsDeportista.Nombre;
                 txtApellidoDeportista.Text = objclsDeportista.Apellido;
                 txtDireccionDeportista.Text = objclsDeportista.Direccion;
-                txtTelefonoDeportista.Text = Convert.ToString(objclsDeportista.Telefono);
-                txtEdadDeportista.Text = Convert.ToString(objclsDeportista.Edad);
+                mskTelefonoDeportistaModificar.Text = Convert.ToString(objclsDeportista.Telefono);
+                mskEdadDeportistaModificar.Text = Convert.ToString(objclsDeportista.Edad);
                 txtDeporteDeportista.Text = Convert.ToString(objclsDeportista.Deportes);
                 btnEliminarDeportista.Enabled = true;
                 btnGuardar.Enabled = true;
@@ -66,14 +66,12 @@ namespace pryTorresBaseDeDatos
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            txtTelefonoDeportista.ReadOnly = false;
-            txtEdadDeportista.ReadOnly = false;
-            txtDeporteDeportista.ReadOnly = false;
-            txtDireccionDeportista.ReadOnly = false;
+            NoLecturaCajasDeTexto();
             btnModificar.Enabled = false;
             btnBuscarDeportista.Enabled = false;
-            mskCodigoDeportistaBusqueda.ReadOnly = true;
+            txtCodigoDeportistaBusqueda.ReadOnly = true;
             btnEliminarDeportista.Enabled = false;
+            btnGuardar.Enabled = true;
 
         }
 
@@ -82,53 +80,87 @@ namespace pryTorresBaseDeDatos
             string CodigoDeportista = txtCodigoDeportista.Text;
             clsDeportista ModificarED = new clsDeportista();
             ModificarED.Direccion = txtDireccionDeportista.Text;
-            ModificarED.Telefono = Convert.ToInt32(txtTelefonoDeportista.Text);
-            ModificarED.Edad = Convert.ToInt32(txtEdadDeportista.Text);
+            ModificarED.Telefono = Convert.ToInt32(mskTelefonoDeportistaModificar.Text);
+            ModificarED.Edad = Convert.ToInt32(mskEdadDeportistaModificar.Text);
             ModificarED.Deportes = txtDeporteDeportista.Text;
             ModificarED.Modificar(CodigoDeportista);
-            ModificarED.Telefono = Convert.ToInt32(txtTelefonoDeportista.Text);
+            ModificarED.Telefono = Convert.ToInt32(mskTelefonoDeportistaModificar.Text);
             btnModificar.Enabled = true;
-            mskCodigoDeportistaBusqueda.ReadOnly = false;
+            txtCodigoDeportistaBusqueda.ReadOnly = false;
             btnBuscarDeportista.Enabled = true;
             btnEliminarDeportista.Enabled = true;
+            btnGuardar.Enabled = false;
+            LecturaCajasDeTexto();
         }
 
-        private void mrcDatosDeportistas_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void mskCodigoDeportistaBusqueda_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-          
-        }
+      
         private void LimpiarControles()
         {
             txtCodigoDeportista.Text = "";
             txtNombreDeportista.Text = "";
             txtApellidoDeportista.Text = "";
             txtDireccionDeportista.Text = "";
-            txtTelefonoDeportista.Text = "";
-            txtEdadDeportista.Text = "";
+            mskTelefonoDeportistaModificar.Text = "";
+            mskEdadDeportistaModificar.Text = "";
             txtDeporteDeportista.Text = "";
-            mskCodigoDeportistaBusqueda.Text = "";
+            txtCodigoDeportistaBusqueda.Text = "";
         }
 
-        private void mskCodigoDeportistaBusqueda_MaskChanged(object sender, EventArgs e)
-        {
        
 
+        private void txtCodigoDeportistaBusqueda_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //keychar indica si la tecla presionada ya que recoge el numero ascii de la tecla y verifica que no sea numeros,caracteres especiales
+            if ((e.KeyChar >= 32 && e.KeyChar <= 64) || (e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
+            {
+                //El handled nos permite ingresar el valor o sea visualizar la letra
+                e.Handled = true;
+            }
         }
 
-        private void mskCodigoDeportistaBusqueda_TextChanged(object sender, EventArgs e)
+        private void txtCodigoDeportistaBusqueda_TextChanged(object sender, EventArgs e)
         {
-            if (mskCodigoDeportistaBusqueda.Text != "")
+            if (txtCodigoDeportistaBusqueda.Text != "")
             {
                 btnBuscarDeportista.Enabled = true;
             }
             else
             {
                 btnBuscarDeportista.Enabled = false;
+            }
+        }
+        private void frmEliminarOModificarDeportistas_Load(object sender, EventArgs e)
+        {
+            mskTelefonoDeportistaModificar.ReadOnly = true;
+            mskEdadDeportistaModificar.ReadOnly = true;
+        }
+
+
+        private void LecturaCajasDeTexto()
+        {
+            mskTelefonoDeportistaModificar.ReadOnly = true;
+            mskEdadDeportistaModificar.ReadOnly = true;
+            txtDeporteDeportista.ReadOnly = true;
+            txtDireccionDeportista.ReadOnly = true;
+            txtDeporteDeportista.ReadOnly = true;
+        }
+        private void NoLecturaCajasDeTexto()
+        {
+
+            mskTelefonoDeportistaModificar.ReadOnly = false;
+            mskEdadDeportistaModificar.ReadOnly = false;
+            txtDeporteDeportista.ReadOnly = false;
+            txtDireccionDeportista.ReadOnly = false;
+            txtDeporteDeportista.ReadOnly = false;
+
+        }
+        private void txtDeporteDeportista_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //keychar indica si la tecla presionada ya que recoge el numero ascii de la tecla y verifica que no sea numeros,caracteres especiales
+            if ((e.KeyChar >= 32 && e.KeyChar <= 64) || (e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
+            {
+                //El handled nos permite ingresar el valor o sea visualizar la letra
+                e.Handled = true;
             }
         }
     }

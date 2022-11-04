@@ -39,10 +39,10 @@
             // 
             // btnListar
             // 
-            this.btnListar.Location = new System.Drawing.Point(392, 204);
+            this.btnListar.Location = new System.Drawing.Point(454, 322);
             this.btnListar.Name = "btnListar";
-            this.btnListar.Size = new System.Drawing.Size(232, 23);
-            this.btnListar.TabIndex = 3;
+            this.btnListar.Size = new System.Drawing.Size(345, 23);
+            this.btnListar.TabIndex = 1;
             this.btnListar.Text = "Listar";
             this.btnListar.UseVisualStyleBackColor = true;
             this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
@@ -52,7 +52,7 @@
             this.dgvDeportistasConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDeportistasConsulta.Location = new System.Drawing.Point(15, 19);
             this.dgvDeportistasConsulta.Name = "dgvDeportistasConsulta";
-            this.dgvDeportistasConsulta.Size = new System.Drawing.Size(579, 150);
+            this.dgvDeportistasConsulta.Size = new System.Drawing.Size(760, 273);
             this.dgvDeportistasConsulta.TabIndex = 2;
             this.dgvDeportistasConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDeportistasConsulta_CellContentClick);
             // 
@@ -61,17 +61,17 @@
             this.mrcDeportistas.Controls.Add(this.dgvDeportistasConsulta);
             this.mrcDeportistas.Location = new System.Drawing.Point(12, 12);
             this.mrcDeportistas.Name = "mrcDeportistas";
-            this.mrcDeportistas.Size = new System.Drawing.Size(612, 186);
+            this.mrcDeportistas.Size = new System.Drawing.Size(787, 304);
             this.mrcDeportistas.TabIndex = 4;
             this.mrcDeportistas.TabStop = false;
             this.mrcDeportistas.Text = "Deportistas";
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(12, 204);
+            this.btnSalir.Location = new System.Drawing.Point(12, 322);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(232, 23);
-            this.btnSalir.TabIndex = 4;
+            this.btnSalir.Size = new System.Drawing.Size(345, 23);
+            this.btnSalir.TabIndex = 2;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
@@ -80,7 +80,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(634, 239);
+            this.ClientSize = new System.Drawing.Size(804, 357);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.mrcDeportistas);
             this.Controls.Add(this.btnListar);

@@ -13,18 +13,20 @@ namespace pryTorresBaseDeDatos
 {
     internal class clsDeportista
     {
-        //Conexion de la BD
-        private OleDbConnection Conexion = new OleDbConnection();
-        //Envia un comando/orden a la BD
-        private OleDbCommand Comando = new OleDbCommand();
-        //Adapta los datos de la base de datos al .net
-        private OleDbDataAdapter Adaptador = new OleDbDataAdapter();
+
+        //Creacion de objetos
+        //Nos permite conectar a la base de datos
+        private OleDbConnection conexionBd = new OleDbConnection();
+        //Con este objeto enviamos una orden a la BD
+        private OleDbCommand comandoBd = new OleDbCommand();
+        //Nos sirve para adaptar los datos de la BD a datos reconocidos por .NET
+        private OleDbDataAdapter AdaptadorDeDatosBd = new OleDbDataAdapter();
         //variable para indicar la ruta de la BD
-        private string varCadenaConexion = "Provider = Microsoft.ACE.OLEDB.12.0;Data Source=" + "DEPORTE.accdb";
+        private string varRutaAccesoBD = "Provider = Microsoft.ACE.OLEDB.12.0;Data Source=" + "DEPORTE.accdb";
         //Variable que contiene el nombre de una tabla
         private string varTabla = "DEPORTISTA";
 
-
+        //Declaracion de variables privadas
 
         private string CodigoDeportista;
         private string NombreDeportista;
@@ -34,8 +36,12 @@ namespace pryTorresBaseDeDatos
         private Int32 EdadDeportista;
         private string Deporte;
 
+
+
+        //Declaracion de propiedades
         public string CDeportista
         {
+            //Retorna el valor de la variable CodigoDeportista 
             get { return CodigoDeportista; }
             set { CodigoDeportista = value; }
         }
@@ -74,47 +80,51 @@ namespace pryTorresBaseDeDatos
 
         public void Listar(DataGridView dgvConsultasDeportista)
         {
-            //Conecto la base de datos
-            Conexion.ConnectionString = varCadenaConexion;
-            Conexion.Open();
-
-            //El comando toma la conexion
-            Comando.Connection = Conexion;
-            //Este comando me trae la tabla del access
-            Comando.CommandType = CommandType.TableDirect;
-            //Selecciona la tabla
-            Comando.CommandText = varTabla;
-
-            Adaptador = new OleDbDataAdapter(Comando);
-            //Almacena todo en una "tabla"
-            DataSet DataConsulta = new DataSet();
-            Adaptador.Fill(DataConsulta);
-
-            //Mostraria todo en la grilla
-            //La propiedad DataSource toma todo el contenido de un DataSet
-            dgvConsultasDeportista.DataSource = DataConsulta.Tables[0];
-
-            Conexion.Close();
+            //Recibe la ruta de la BD para conectarse
+            conexionBd.ConnectionString = varRutaAccesoBD;
+            //Abre la conexion de la BD, es un canal
+            conexionBd.Open();
+            //Necesitamos mndar una orden para que nos traiga datos de la BD 
+            //usamos el objeto comando
+            //Indicamos la conexion que tiene que utilizar
+            comandoBd.Connection = conexionBd;
+            //Indicamos el tipo de comando
+            //Trae una tabla el comando
+            comandoBd.CommandType = CommandType.TableDirect;
+            comandoBd.CommandText = varTabla;
+            //El adaptador recibe los datos de la BD(lectura)
+            AdaptadorDeDatosBd = new OleDbDataAdapter(comandoBd);
+            //objeto que contiene lo que tiene la tabla, es una tabla virtual
+            DataSet LectorDataSet = new DataSet();
+            //Adaptamos los datos al data set
+            AdaptadorDeDatosBd.Fill(LectorDataSet);
+            //Enviamos los datos del DataSet a la grilla, es 0 porque es la unica tabla
+            //que trajo el dataset
+            //DataSource sirve para tomar el contenido de un DataSet
+            dgvConsultasDeportista.DataSource = LectorDataSet.Tables[0];
+            conexionBd.Close();
 
         }
 
         public void Buscar(string varCodigo)
         {
             try
-            {
-                //Conexion a la BD
-                Conexion.ConnectionString = varCadenaConexion;
-                Conexion.Open();
-
-                //El comando toma la conexion de la BD
-                Comando.Connection = Conexion;
-                //trae la tabla del access
-                Comando.CommandType = CommandType.TableDirect;
-                //Selecciona la tabla
-                Comando.CommandText = varTabla;
-                //Recibo el contenido de la tabla
-                OleDbDataReader Lector = Comando.ExecuteReader();
-                //Si hay registros ingresa
+            {//Recibe la ruta de la BD para conectarse
+                conexionBd.ConnectionString = varRutaAccesoBD;
+                //Abre la conexion de la BD, es un canal
+                conexionBd.Open();
+                //Necesitamos mndar una orden para que nos traiga datos de la BD 
+                //usamos el objeto comando
+                //Indicamos la conexion que tiene que utilizar
+                comandoBd.Connection = conexionBd;
+                //Indicamos el tipo de comando
+                //Trae una tabla el comando
+                comandoBd.CommandType = CommandType.TableDirect;
+                comandoBd.CommandText = varTabla;
+                //Objeto que toma lo del comando una vez ejecutado por eso ExecuteReader
+                //Toda la tabla deportistas se envio al data reader(tabla virtual)
+                OleDbDataReader Lector = comandoBd.ExecuteReader();
+                //Si tenemos filas entra
                 if (Lector.HasRows)
                 {
                     //Mientras tenga datos en la tabla, esto lo va a leer
@@ -122,6 +132,8 @@ namespace pryTorresBaseDeDatos
                     {
                         if (Lector.GetString(0) == varCodigo)
                         {
+                            //Almacena a cada variable su respectivo dato de cada campo
+                            //de la tabla
                             CodigoDeportista = Lector.GetString(0);
                             NombreDeportista = Lector.GetString(1);
                             ApellidoDeportista = Lector.GetString(2);
@@ -132,7 +144,7 @@ namespace pryTorresBaseDeDatos
                         }
                     }
                 }
-                Conexion.Close();
+                conexionBd.Close();
             }
             catch (Exception mensaje)
             {
@@ -147,19 +159,19 @@ namespace pryTorresBaseDeDatos
             {
                 string Sql = "DELETE FROM DEPORTISTA WHERE ('" + varCodigoDeportista + "'= [CODIGO DEPORTISTA])";
                 //Conexion a la BD
-                Conexion.ConnectionString = varCadenaConexion;
-                Conexion.Open();
+                conexionBd.ConnectionString = varRutaAccesoBD;
+                conexionBd.Open();
 
                 //El comando toma la conexion de la BD
-                Comando.Connection = Conexion;
+                comandoBd.Connection = conexionBd;
                 //trae la tabla del access
-                Comando.CommandType = CommandType.Text;
+                comandoBd.CommandType = CommandType.Text;
                
-                Comando.CommandText = Sql;
-                Comando.ExecuteNonQuery();
+                comandoBd.CommandText = Sql;
+                comandoBd.ExecuteNonQuery();
 
 
-                Conexion.Close();
+                conexionBd.Close();
             }
             catch (Exception mensaje)
             {
@@ -172,19 +184,19 @@ namespace pryTorresBaseDeDatos
         {
             string Sql = "UPDATE DEPORTISTA SET [DIRECCION] = '" + Direccion + "', [TELEFONO] = " + Telefono + ", [EDAD] = " + Edad + ", [DEPORTE] = '" + Deporte + "' WHERE [CODIGO DEPORTISTA] = '" + CDeportista + "'";
             //Conexion a la BD
-            Conexion.ConnectionString = varCadenaConexion;
-            Conexion.Open();
+            conexionBd.ConnectionString = varRutaAccesoBD;
+            conexionBd.Open();
 
             //El comando toma la conexion de la BD
-            Comando.Connection = Conexion;
+            comandoBd.Connection = conexionBd;
             //trae la tabla del access
-            Comando.CommandType = CommandType.Text;
+            comandoBd.CommandType = CommandType.Text;
          
-            Comando.CommandText = Sql;
-            Comando.ExecuteNonQuery();
+            comandoBd.CommandText = Sql;
+            comandoBd.ExecuteNonQuery();
 
 
-            Conexion.Close();
+            conexionBd.Close();
             MessageBox.Show("Cambios Guardados");
         }
 

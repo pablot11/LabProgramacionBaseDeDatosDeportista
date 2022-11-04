@@ -40,34 +40,40 @@
             this.txtProvinciaEntrenador = new System.Windows.Forms.TextBox();
             this.lblDeporteEntrenador = new System.Windows.Forms.Label();
             this.lstDeporteEntrenador = new System.Windows.Forms.ComboBox();
-            this.mskCodigoEntrenador = new System.Windows.Forms.MaskedTextBox();
             this.btnCargarEntrenador = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.mrcCargarEntrenador = new System.Windows.Forms.GroupBox();
+            this.txtCodigoEntrenador = new System.Windows.Forms.TextBox();
             this.mrcCargarEntrenador.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDireccionEntrenador
             // 
             this.txtDireccionEntrenador.Location = new System.Drawing.Point(96, 108);
+            this.txtDireccionEntrenador.MaxLength = 25;
             this.txtDireccionEntrenador.Name = "txtDireccionEntrenador";
             this.txtDireccionEntrenador.Size = new System.Drawing.Size(100, 20);
-            this.txtDireccionEntrenador.TabIndex = 1;
+            this.txtDireccionEntrenador.TabIndex = 4;
+            this.txtDireccionEntrenador.TextChanged += new System.EventHandler(this.txtDireccionEntrenador_TextChanged);
             // 
             // txtApellidoEntrenador
             // 
             this.txtApellidoEntrenador.Location = new System.Drawing.Point(96, 82);
+            this.txtApellidoEntrenador.MaxLength = 15;
             this.txtApellidoEntrenador.Name = "txtApellidoEntrenador";
             this.txtApellidoEntrenador.Size = new System.Drawing.Size(100, 20);
-            this.txtApellidoEntrenador.TabIndex = 2;
+            this.txtApellidoEntrenador.TabIndex = 3;
+            this.txtApellidoEntrenador.TextChanged += new System.EventHandler(this.txtApellidoEntrenador_TextChanged);
             this.txtApellidoEntrenador.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellidoEntrenador_KeyPress);
             // 
             // txtNombreEntrenador
             // 
             this.txtNombreEntrenador.Location = new System.Drawing.Point(96, 56);
+            this.txtNombreEntrenador.MaxLength = 15;
             this.txtNombreEntrenador.Name = "txtNombreEntrenador";
             this.txtNombreEntrenador.Size = new System.Drawing.Size(100, 20);
-            this.txtNombreEntrenador.TabIndex = 3;
+            this.txtNombreEntrenador.TabIndex = 2;
+            this.txtNombreEntrenador.TextChanged += new System.EventHandler(this.txtNombreEntrenador_TextChanged);
             this.txtNombreEntrenador.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreEntrenador_KeyPress);
             // 
             // lblCodigoEntrenador
@@ -118,10 +124,12 @@
             // txtProvinciaEntrenador
             // 
             this.txtProvinciaEntrenador.Location = new System.Drawing.Point(96, 134);
+            this.txtProvinciaEntrenador.MaxLength = 15;
             this.txtProvinciaEntrenador.Name = "txtProvinciaEntrenador";
             this.txtProvinciaEntrenador.Size = new System.Drawing.Size(100, 20);
-            this.txtProvinciaEntrenador.TabIndex = 9;
+            this.txtProvinciaEntrenador.TabIndex = 5;
             this.txtProvinciaEntrenador.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtProvinciaEntrenador.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProvinciaEntrenador_KeyPress);
             // 
             // lblDeporteEntrenador
             // 
@@ -148,18 +156,12 @@
             this.lstDeporteEntrenador.Location = new System.Drawing.Point(96, 160);
             this.lstDeporteEntrenador.Name = "lstDeporteEntrenador";
             this.lstDeporteEntrenador.Size = new System.Drawing.Size(100, 21);
-            this.lstDeporteEntrenador.TabIndex = 11;
-            // 
-            // mskCodigoEntrenador
-            // 
-            this.mskCodigoEntrenador.Location = new System.Drawing.Point(96, 30);
-            this.mskCodigoEntrenador.Mask = "AAAAA";
-            this.mskCodigoEntrenador.Name = "mskCodigoEntrenador";
-            this.mskCodigoEntrenador.Size = new System.Drawing.Size(56, 20);
-            this.mskCodigoEntrenador.TabIndex = 12;
+            this.lstDeporteEntrenador.TabIndex = 6;
+            this.lstDeporteEntrenador.SelectedIndexChanged += new System.EventHandler(this.lstDeporteEntrenador_SelectedIndexChanged);
             // 
             // btnCargarEntrenador
             // 
+            this.btnCargarEntrenador.Enabled = false;
             this.btnCargarEntrenador.Location = new System.Drawing.Point(137, 220);
             this.btnCargarEntrenador.Name = "btnCargarEntrenador";
             this.btnCargarEntrenador.Size = new System.Drawing.Size(75, 23);
@@ -176,12 +178,13 @@
             this.btnSalir.TabIndex = 14;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // mrcCargarEntrenador
             // 
+            this.mrcCargarEntrenador.Controls.Add(this.txtCodigoEntrenador);
             this.mrcCargarEntrenador.Controls.Add(this.lblCodigoEntrenador);
             this.mrcCargarEntrenador.Controls.Add(this.txtDireccionEntrenador);
-            this.mrcCargarEntrenador.Controls.Add(this.mskCodigoEntrenador);
             this.mrcCargarEntrenador.Controls.Add(this.txtApellidoEntrenador);
             this.mrcCargarEntrenador.Controls.Add(this.lstDeporteEntrenador);
             this.mrcCargarEntrenador.Controls.Add(this.txtNombreEntrenador);
@@ -197,12 +200,23 @@
             this.mrcCargarEntrenador.TabIndex = 15;
             this.mrcCargarEntrenador.TabStop = false;
             this.mrcCargarEntrenador.Text = "Datos Entrenador";
+            this.mrcCargarEntrenador.Enter += new System.EventHandler(this.mrcCargarEntrenador_Enter);
+            // 
+            // txtCodigoEntrenador
+            // 
+            this.txtCodigoEntrenador.Location = new System.Drawing.Point(96, 30);
+            this.txtCodigoEntrenador.MaxLength = 5;
+            this.txtCodigoEntrenador.Name = "txtCodigoEntrenador";
+            this.txtCodigoEntrenador.Size = new System.Drawing.Size(100, 20);
+            this.txtCodigoEntrenador.TabIndex = 1;
+            this.txtCodigoEntrenador.TextChanged += new System.EventHandler(this.txtCodigoEntrenador_TextChanged);
+            this.txtCodigoEntrenador.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoEntrenador_KeyPress);
             // 
             // frmCargarEntrenador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(231, 255);
+            this.ClientSize = new System.Drawing.Size(225, 255);
             this.Controls.Add(this.mrcCargarEntrenador);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnCargarEntrenador);
@@ -228,9 +242,9 @@
         private System.Windows.Forms.TextBox txtProvinciaEntrenador;
         private System.Windows.Forms.Label lblDeporteEntrenador;
         private System.Windows.Forms.ComboBox lstDeporteEntrenador;
-        private System.Windows.Forms.MaskedTextBox mskCodigoEntrenador;
         private System.Windows.Forms.Button btnCargarEntrenador;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.GroupBox mrcCargarEntrenador;
+        private System.Windows.Forms.TextBox txtCodigoEntrenador;
     }
 }

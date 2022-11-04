@@ -48,9 +48,9 @@
             this.lblDireccionEntrenador = new System.Windows.Forms.Label();
             this.lblProvinciaEntrenador = new System.Windows.Forms.Label();
             this.txtProvinciaEntrenador = new System.Windows.Forms.TextBox();
-            this.txtDeporteEntrenador = new System.Windows.Forms.TextBox();
             this.lblDeporteEntrenador = new System.Windows.Forms.Label();
             this.mrcDatosEntrenador = new System.Windows.Forms.GroupBox();
+            this.txtDeporteEntrenador = new System.Windows.Forms.TextBox();
             this.mrcBuscarEntrenador.SuspendLayout();
             this.mrcDatosEntrenador.SuspendLayout();
             this.SuspendLayout();
@@ -160,6 +160,7 @@
             // txtDireccionEntrenador
             // 
             this.txtDireccionEntrenador.Location = new System.Drawing.Point(108, 107);
+            this.txtDireccionEntrenador.MaxLength = 25;
             this.txtDireccionEntrenador.Name = "txtDireccionEntrenador";
             this.txtDireccionEntrenador.ReadOnly = true;
             this.txtDireccionEntrenador.Size = new System.Drawing.Size(100, 20);
@@ -229,19 +230,12 @@
             // txtProvinciaEntrenador
             // 
             this.txtProvinciaEntrenador.Location = new System.Drawing.Point(108, 133);
+            this.txtProvinciaEntrenador.MaxLength = 15;
             this.txtProvinciaEntrenador.Name = "txtProvinciaEntrenador";
             this.txtProvinciaEntrenador.ReadOnly = true;
             this.txtProvinciaEntrenador.Size = new System.Drawing.Size(100, 20);
-            this.txtProvinciaEntrenador.TabIndex = 11;
-            // 
-            // txtDeporteEntrenador
-            // 
-            this.txtDeporteEntrenador.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.txtDeporteEntrenador.Location = new System.Drawing.Point(108, 159);
-            this.txtDeporteEntrenador.Name = "txtDeporteEntrenador";
-            this.txtDeporteEntrenador.ReadOnly = true;
-            this.txtDeporteEntrenador.Size = new System.Drawing.Size(100, 20);
-            this.txtDeporteEntrenador.TabIndex = 12;
+            this.txtProvinciaEntrenador.TabIndex = 3;
+            this.txtProvinciaEntrenador.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProvinciaEntrenador_KeyPress);
             // 
             // lblDeporteEntrenador
             // 
@@ -272,6 +266,17 @@
             this.mrcDatosEntrenador.TabIndex = 18;
             this.mrcDatosEntrenador.TabStop = false;
             this.mrcDatosEntrenador.Text = "Datos Entrenador";
+            // 
+            // txtDeporteEntrenador
+            // 
+            this.txtDeporteEntrenador.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.txtDeporteEntrenador.Location = new System.Drawing.Point(108, 159);
+            this.txtDeporteEntrenador.MaxLength = 15;
+            this.txtDeporteEntrenador.Name = "txtDeporteEntrenador";
+            this.txtDeporteEntrenador.ReadOnly = true;
+            this.txtDeporteEntrenador.Size = new System.Drawing.Size(100, 20);
+            this.txtDeporteEntrenador.TabIndex = 4;
+            this.txtDeporteEntrenador.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDeporteEntrenador_KeyPress);
             // 
             // frmEliminarOModificarEntrenadores
             // 
@@ -316,8 +321,8 @@
         private System.Windows.Forms.Label lblDireccionEntrenador;
         private System.Windows.Forms.Label lblProvinciaEntrenador;
         private System.Windows.Forms.TextBox txtProvinciaEntrenador;
-        private System.Windows.Forms.TextBox txtDeporteEntrenador;
         private System.Windows.Forms.Label lblDeporteEntrenador;
         private System.Windows.Forms.GroupBox mrcDatosEntrenador;
+        private System.Windows.Forms.TextBox txtDeporteEntrenador;
     }
 }

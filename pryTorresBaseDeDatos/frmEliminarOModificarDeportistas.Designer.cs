@@ -33,12 +33,12 @@
             this.lblCodigoDeportistaBusqueda = new System.Windows.Forms.Label();
             this.btnBuscarDeportista = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.mskCodigoDeportistaBusqueda = new System.Windows.Forms.MaskedTextBox();
             this.txtCodigoDeportistaBusqueda = new System.Windows.Forms.TextBox();
             this.mrcDatosDeportistas = new System.Windows.Forms.GroupBox();
+            this.mskEdadDeportistaModificar = new System.Windows.Forms.MaskedTextBox();
+            this.mskTelefonoDeportistaModificar = new System.Windows.Forms.MaskedTextBox();
             this.lblDeporteDeportista = new System.Windows.Forms.Label();
             this.txtDeporteDeportista = new System.Windows.Forms.TextBox();
-            this.txtEdadDeportista = new System.Windows.Forms.TextBox();
             this.lblEdadDeportista = new System.Windows.Forms.Label();
             this.lblTelefonoDeportista = new System.Windows.Forms.Label();
             this.lblDireccionDeportista = new System.Windows.Forms.Label();
@@ -48,7 +48,6 @@
             this.txtNombreDeportista = new System.Windows.Forms.TextBox();
             this.txtApellidoDeportista = new System.Windows.Forms.TextBox();
             this.txtDireccionDeportista = new System.Windows.Forms.TextBox();
-            this.txtTelefonoDeportista = new System.Windows.Forms.TextBox();
             this.txtCodigoDeportista = new System.Windows.Forms.TextBox();
             this.btnEliminarDeportista = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
@@ -62,7 +61,6 @@
             this.mrcBuscarDeportista.Controls.Add(this.lblCodigoDeportistaBusqueda);
             this.mrcBuscarDeportista.Controls.Add(this.btnBuscarDeportista);
             this.mrcBuscarDeportista.Controls.Add(this.btnSalir);
-            this.mrcBuscarDeportista.Controls.Add(this.mskCodigoDeportistaBusqueda);
             this.mrcBuscarDeportista.Controls.Add(this.txtCodigoDeportistaBusqueda);
             this.mrcBuscarDeportista.Location = new System.Drawing.Point(10, 12);
             this.mrcBuscarDeportista.Name = "mrcBuscarDeportista";
@@ -101,28 +99,22 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // mskCodigoDeportistaBusqueda
-            // 
-            this.mskCodigoDeportistaBusqueda.Location = new System.Drawing.Point(126, 32);
-            this.mskCodigoDeportistaBusqueda.Mask = "AAAAA";
-            this.mskCodigoDeportistaBusqueda.Name = "mskCodigoDeportistaBusqueda";
-            this.mskCodigoDeportistaBusqueda.Size = new System.Drawing.Size(83, 20);
-            this.mskCodigoDeportistaBusqueda.TabIndex = 1;
-            this.mskCodigoDeportistaBusqueda.MaskChanged += new System.EventHandler(this.mskCodigoDeportistaBusqueda_MaskChanged);
-            this.mskCodigoDeportistaBusqueda.TextChanged += new System.EventHandler(this.mskCodigoDeportistaBusqueda_TextChanged);
-            // 
             // txtCodigoDeportistaBusqueda
             // 
             this.txtCodigoDeportistaBusqueda.Location = new System.Drawing.Point(134, 32);
+            this.txtCodigoDeportistaBusqueda.MaxLength = 5;
             this.txtCodigoDeportistaBusqueda.Name = "txtCodigoDeportistaBusqueda";
             this.txtCodigoDeportistaBusqueda.Size = new System.Drawing.Size(75, 20);
-            this.txtCodigoDeportistaBusqueda.TabIndex = 0;
+            this.txtCodigoDeportistaBusqueda.TabIndex = 1;
+            this.txtCodigoDeportistaBusqueda.TextChanged += new System.EventHandler(this.txtCodigoDeportistaBusqueda_TextChanged);
+            this.txtCodigoDeportistaBusqueda.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoDeportistaBusqueda_KeyPress);
             // 
             // mrcDatosDeportistas
             // 
+            this.mrcDatosDeportistas.Controls.Add(this.mskEdadDeportistaModificar);
+            this.mrcDatosDeportistas.Controls.Add(this.mskTelefonoDeportistaModificar);
             this.mrcDatosDeportistas.Controls.Add(this.lblDeporteDeportista);
             this.mrcDatosDeportistas.Controls.Add(this.txtDeporteDeportista);
-            this.mrcDatosDeportistas.Controls.Add(this.txtEdadDeportista);
             this.mrcDatosDeportistas.Controls.Add(this.lblEdadDeportista);
             this.mrcDatosDeportistas.Controls.Add(this.lblTelefonoDeportista);
             this.mrcDatosDeportistas.Controls.Add(this.lblDireccionDeportista);
@@ -132,7 +124,6 @@
             this.mrcDatosDeportistas.Controls.Add(this.txtNombreDeportista);
             this.mrcDatosDeportistas.Controls.Add(this.txtApellidoDeportista);
             this.mrcDatosDeportistas.Controls.Add(this.txtDireccionDeportista);
-            this.mrcDatosDeportistas.Controls.Add(this.txtTelefonoDeportista);
             this.mrcDatosDeportistas.Controls.Add(this.txtCodigoDeportista);
             this.mrcDatosDeportistas.Location = new System.Drawing.Point(11, 105);
             this.mrcDatosDeportistas.Name = "mrcDatosDeportistas";
@@ -140,7 +131,22 @@
             this.mrcDatosDeportistas.TabIndex = 1;
             this.mrcDatosDeportistas.TabStop = false;
             this.mrcDatosDeportistas.Text = "Datos Deportista";
-            this.mrcDatosDeportistas.Enter += new System.EventHandler(this.mrcDatosDeportistas_Enter);
+            // 
+            // mskEdadDeportistaModificar
+            // 
+            this.mskEdadDeportistaModificar.Location = new System.Drawing.Point(108, 156);
+            this.mskEdadDeportistaModificar.Mask = "99";
+            this.mskEdadDeportistaModificar.Name = "mskEdadDeportistaModificar";
+            this.mskEdadDeportistaModificar.Size = new System.Drawing.Size(48, 20);
+            this.mskEdadDeportistaModificar.TabIndex = 4;
+            // 
+            // mskTelefonoDeportistaModificar
+            // 
+            this.mskTelefonoDeportistaModificar.Location = new System.Drawing.Point(108, 133);
+            this.mskTelefonoDeportistaModificar.Mask = "999999999";
+            this.mskTelefonoDeportistaModificar.Name = "mskTelefonoDeportistaModificar";
+            this.mskTelefonoDeportistaModificar.Size = new System.Drawing.Size(100, 20);
+            this.mskTelefonoDeportistaModificar.TabIndex = 3;
             // 
             // lblDeporteDeportista
             // 
@@ -155,18 +161,12 @@
             // 
             this.txtDeporteDeportista.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.txtDeporteDeportista.Location = new System.Drawing.Point(108, 185);
+            this.txtDeporteDeportista.MaxLength = 20;
             this.txtDeporteDeportista.Name = "txtDeporteDeportista";
             this.txtDeporteDeportista.ReadOnly = true;
             this.txtDeporteDeportista.Size = new System.Drawing.Size(100, 20);
-            this.txtDeporteDeportista.TabIndex = 12;
-            // 
-            // txtEdadDeportista
-            // 
-            this.txtEdadDeportista.Location = new System.Drawing.Point(157, 159);
-            this.txtEdadDeportista.Name = "txtEdadDeportista";
-            this.txtEdadDeportista.ReadOnly = true;
-            this.txtEdadDeportista.Size = new System.Drawing.Size(51, 20);
-            this.txtEdadDeportista.TabIndex = 11;
+            this.txtDeporteDeportista.TabIndex = 5;
+            this.txtDeporteDeportista.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDeporteDeportista_KeyPress);
             // 
             // lblEdadDeportista
             // 
@@ -218,9 +218,9 @@
             this.lblCodigoDeportista.AutoSize = true;
             this.lblCodigoDeportista.Location = new System.Drawing.Point(16, 32);
             this.lblCodigoDeportista.Name = "lblCodigoDeportista";
-            this.lblCodigoDeportista.Size = new System.Drawing.Size(94, 13);
+            this.lblCodigoDeportista.Size = new System.Drawing.Size(43, 13);
             this.lblCodigoDeportista.TabIndex = 5;
-            this.lblCodigoDeportista.Text = "Codigo Deportista:";
+            this.lblCodigoDeportista.Text = "Codigo:";
             // 
             // txtNombreDeportista
             // 
@@ -241,26 +241,19 @@
             // txtDireccionDeportista
             // 
             this.txtDireccionDeportista.Location = new System.Drawing.Point(108, 107);
+            this.txtDireccionDeportista.MaxLength = 20;
             this.txtDireccionDeportista.Name = "txtDireccionDeportista";
             this.txtDireccionDeportista.ReadOnly = true;
             this.txtDireccionDeportista.Size = new System.Drawing.Size(100, 20);
             this.txtDireccionDeportista.TabIndex = 2;
             // 
-            // txtTelefonoDeportista
-            // 
-            this.txtTelefonoDeportista.Location = new System.Drawing.Point(108, 133);
-            this.txtTelefonoDeportista.Name = "txtTelefonoDeportista";
-            this.txtTelefonoDeportista.ReadOnly = true;
-            this.txtTelefonoDeportista.Size = new System.Drawing.Size(100, 20);
-            this.txtTelefonoDeportista.TabIndex = 1;
-            // 
             // txtCodigoDeportista
             // 
-            this.txtCodigoDeportista.Location = new System.Drawing.Point(157, 32);
+            this.txtCodigoDeportista.Location = new System.Drawing.Point(108, 32);
             this.txtCodigoDeportista.Name = "txtCodigoDeportista";
             this.txtCodigoDeportista.ReadOnly = true;
             this.txtCodigoDeportista.Size = new System.Drawing.Size(51, 20);
-            this.txtCodigoDeportista.TabIndex = 0;
+            this.txtCodigoDeportista.TabIndex = 8;
             // 
             // btnEliminarDeportista
             // 
@@ -299,7 +292,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(254, 381);
+            this.ClientSize = new System.Drawing.Size(263, 381);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.mrcDatosDeportistas);
@@ -308,6 +301,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmEliminarOModificarDeportistas";
             this.Text = "Gestion Deportistas";
+            this.Load += new System.EventHandler(this.frmEliminarOModificarDeportistas_Load);
             this.mrcBuscarDeportista.ResumeLayout(false);
             this.mrcBuscarDeportista.PerformLayout();
             this.mrcDatosDeportistas.ResumeLayout(false);
@@ -321,7 +315,6 @@
         private System.Windows.Forms.GroupBox mrcBuscarDeportista;
         private System.Windows.Forms.Label lblCodigoDeportistaBusqueda;
         private System.Windows.Forms.Button btnBuscarDeportista;
-        private System.Windows.Forms.MaskedTextBox mskCodigoDeportistaBusqueda;
         private System.Windows.Forms.TextBox txtCodigoDeportistaBusqueda;
         private System.Windows.Forms.GroupBox mrcDatosDeportistas;
         private System.Windows.Forms.Label lblTelefonoDeportista;
@@ -332,15 +325,15 @@
         private System.Windows.Forms.TextBox txtNombreDeportista;
         private System.Windows.Forms.TextBox txtApellidoDeportista;
         private System.Windows.Forms.TextBox txtDireccionDeportista;
-        private System.Windows.Forms.TextBox txtTelefonoDeportista;
         private System.Windows.Forms.TextBox txtCodigoDeportista;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnEliminarDeportista;
         private System.Windows.Forms.Label lblDeporteDeportista;
         private System.Windows.Forms.TextBox txtDeporteDeportista;
-        private System.Windows.Forms.TextBox txtEdadDeportista;
         private System.Windows.Forms.Label lblEdadDeportista;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.MaskedTextBox mskTelefonoDeportistaModificar;
+        private System.Windows.Forms.MaskedTextBox mskEdadDeportistaModificar;
     }
 }
