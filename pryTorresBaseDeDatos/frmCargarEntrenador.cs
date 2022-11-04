@@ -69,17 +69,18 @@ namespace pryTorresBaseDeDatos
             string Deporte = Convert.ToString(lstDeporteEntrenador.SelectedItem);
             try
             {
+                //Recibe la ruta de la BD para conectarse
                 conexionBd = new OleDbConnection(varRutaAccesoBD);
+                //Abre la conexion de la BD, es un canal
                 conexionBd.Open();
-
-                comandoBd = new OleDbCommand();
-
+                //El comando toma la conexion
                 comandoBd.Connection = conexionBd;
+                //Se indica el tipo de comando el text es para instrucciones sql
                 comandoBd.CommandType = CommandType.Text;
-
+                //Se le indica el comando sql
                 comandoBd.CommandText = "INSERT INTO" + " ENTRENADORES ([CODIGO ENTRENADOR], [NOMBRE], [APELLIDO], [DIRECCION], [PROVINCIA], [DEPORTE])" +
                     " VALUES ('" + CodigoEntrenador + "','" + Nombre + "','" + Apellido + "','" + Direccion + "','" + Provincia + "','" + Deporte + "')";
-
+                //ejecuta el comando
                 comandoBd.ExecuteNonQuery();
                 MessageBox.Show("Entrenador Cargado");
             }

@@ -23,7 +23,7 @@ namespace pryTorresBaseDeDatos
         //Variable que contiene el nombre de una tabla
         private string varTabla = "ENTRENADORES";
 
-
+        //Declaracion de campos
         public bool varBandera = true;
         private string CodigoEntrenador;
         private string NombreEntrenador;
@@ -95,9 +95,8 @@ namespace pryTorresBaseDeDatos
         public void Buscar(string varCodigo)
         {
             try
-            {
-                try
-                {//Recibe la ruta de la BD para conectarse
+            {               
+                     //Recibe la ruta de la BD para conectarse
                     conexionBd.ConnectionString = varRutaAccesoBD;
                     //Abre la conexion de la BD, es un canal
                     conexionBd.Open();
@@ -134,9 +133,7 @@ namespace pryTorresBaseDeDatos
                         }
                        
                     }
-
-                }
-                conexionBd.Close();
+                    conexionBd.Close();                    
             }
             catch (Exception mensaje)
             {
@@ -151,19 +148,18 @@ namespace pryTorresBaseDeDatos
             try
             {
                 string Sql = "DELETE FROM ENTRENADORES WHERE ('" + varCodigoEntrenador + "'= [CODIGO ENTRENADOR])";
-                //Conecto la base de datos
+                //Recibe la ruta de la BD para conectarse
                 conexionBd.ConnectionString = varRutaAccesoBD;
+                //Se conecta a la BD
                 conexionBd.Open();
-
                 //El comando toma la conexion
                 comandoBd.Connection = conexionBd;
-                //Este comando me trae la tabla del access
+                //Se indica el tipo de comando el text es para instrucciones sql
                 comandoBd.CommandType = CommandType.Text;
-                //Selecciona la tabla
+                //Se pasa la instruccion sql al comando
                 comandoBd.CommandText = Sql;
+                //ejecuta el comando
                 comandoBd.ExecuteNonQuery();
-
-
                 conexionBd.Close();
             }
             catch (Exception mensaje)
@@ -173,18 +169,21 @@ namespace pryTorresBaseDeDatos
         }
 
         public void Modificar(string CEntrenador)
-        {
-            string Sql = "UPDATE ENTRENADORES SET [DIRECCION] = '" + Direccion + "', [PROVINCIA] = '" + Provincia + "', [DEPORTE] = '" + Deporte + "' WHERE [CODIGO ENTRENADOR] = '" + CEntrenador + "'";
-            //Conecto la base de datos
-            conexionBd.ConnectionString = varRutaAccesoBD;
-            conexionBd.Open();
 
+        {
+            //Instruccion sql
+            string Sql = "UPDATE ENTRENADORES SET [DIRECCION] = '" + Direccion + "', [PROVINCIA] = '" + Provincia + "', [DEPORTE] = '" + Deporte + "' WHERE [CODIGO ENTRENADOR] = '" + CEntrenador + "'";
+            //Recibe la ruta de la BD para conectarse
+            conexionBd.ConnectionString = varRutaAccesoBD;
+            //Se conecta a la BD
+            conexionBd.Open();
             //El comando toma la conexion
             comandoBd.Connection = conexionBd;
-            //Este comando me trae la tabla del access
+            //Se indica el tipo de comando el text es para instrucciones sql
             comandoBd.CommandType = CommandType.Text;
-            //Selecciona la tabla
+            //Se pasa la instruccion sql al comando
             comandoBd.CommandText = Sql;
+            //ejecuta el comando
             comandoBd.ExecuteNonQuery();
             conexionBd.Close();
             MessageBox.Show("Cambios Guardados");

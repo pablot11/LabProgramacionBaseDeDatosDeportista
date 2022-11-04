@@ -19,7 +19,7 @@ namespace pryTorresBaseDeDatos
 
         private void btnBuscarEntrenador_Click(object sender, EventArgs e)
         {
-            string varCodigo = mskCodigoEntrenadorBusqueda.Text;
+            string varCodigo = txtCodigoEntrenadorBusqueda.Text;
             clsEntrenador objclsEntrenador = new clsEntrenador();
             objclsEntrenador.Buscar(varCodigo);
             if (objclsEntrenador.varBandera == false)
@@ -53,24 +53,14 @@ namespace pryTorresBaseDeDatos
             this.Close();
         }
 
-        private void mskCodigoEntrenadorBusqueda_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-            if (mskCodigoEntrenadorBusqueda.Text != "")
-            {
-                btnBuscarEntrenador.Enabled = true;
-            }
-            else
-            {
-                btnBuscarEntrenador.Enabled = false;
-            }
-        }
+      
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
             NoLecturaCajasDeTexto();
             btnModificar.Enabled = false;
             btnBuscarEntrenador.Enabled = false;
-            mskCodigoEntrenadorBusqueda.ReadOnly = true;
+            txtCodigoEntrenadorBusqueda.ReadOnly = true;
             btnEliminarEntrenador.Enabled = false;
             btnGuardar.Enabled = true;
         }
@@ -99,7 +89,7 @@ namespace pryTorresBaseDeDatos
             ModificarED.Modificar(CodigoEntrenador);
     
             btnModificar.Enabled = true;
-            mskCodigoEntrenadorBusqueda.ReadOnly = false;
+            txtCodigoEntrenadorBusqueda.ReadOnly = false;
             btnBuscarEntrenador.Enabled = true;
             btnEliminarEntrenador.Enabled = true;
             btnGuardar.Enabled = false;
@@ -108,7 +98,7 @@ namespace pryTorresBaseDeDatos
 
         private void LimpiarControles()
         {
-            mskCodigoEntrenadorBusqueda.Text = "";
+            txtCodigoEntrenadorBusqueda.Text = "";
             txtCodigoEntrenador.Text = "";
             txtNombreEntrenador.Text = "";
             txtApellidoEntrenador.Text = "";
@@ -120,7 +110,7 @@ namespace pryTorresBaseDeDatos
 
         private void mskCodigoEntrenadorBusqueda_TextChanged(object sender, EventArgs e)
         {
-            if (mskCodigoEntrenadorBusqueda.Text != "")
+            if (txtCodigoEntrenadorBusqueda.Text != "")
             {
                 btnBuscarEntrenador.Enabled = true;
             }
@@ -161,6 +151,28 @@ namespace pryTorresBaseDeDatos
             {
                 //El handled nos permite ingresar el valor o sea visualizar la letra
                 e.Handled = true;
+            }
+        }
+
+        private void txtCodigoEntrenadorBusqueda_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //keychar indica si la tecla presionada ya que recoge el numero ascii de la tecla y verifica que no sea numeros,caracteres especiales
+            if ((e.KeyChar > 32 && e.KeyChar <= 64) || (e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
+            {
+                //El handled nos permite ingresar el valor o sea visualizar la letra
+                e.Handled = true;
+            }
+        }
+
+        private void txtCodigoEntrenadorBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCodigoEntrenadorBusqueda.Text != "")
+            {
+                btnBuscarEntrenador.Enabled = true;
+            }
+            else
+            {
+                btnBuscarEntrenador.Enabled = false;
             }
         }
     }

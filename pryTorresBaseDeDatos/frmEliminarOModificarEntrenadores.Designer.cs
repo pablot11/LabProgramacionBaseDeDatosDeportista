@@ -36,7 +36,6 @@
             this.lblCodigoEntrenadorBusqueda = new System.Windows.Forms.Label();
             this.btnBuscarEntrenador = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.mskCodigoEntrenadorBusqueda = new System.Windows.Forms.MaskedTextBox();
             this.txtCodigoEntrenadorBusqueda = new System.Windows.Forms.TextBox();
             this.txtCodigoEntrenador = new System.Windows.Forms.TextBox();
             this.txtDireccionEntrenador = new System.Windows.Forms.TextBox();
@@ -93,7 +92,6 @@
             this.mrcBuscarEntrenador.Controls.Add(this.lblCodigoEntrenadorBusqueda);
             this.mrcBuscarEntrenador.Controls.Add(this.btnBuscarEntrenador);
             this.mrcBuscarEntrenador.Controls.Add(this.btnSalir);
-            this.mrcBuscarEntrenador.Controls.Add(this.mskCodigoEntrenadorBusqueda);
             this.mrcBuscarEntrenador.Controls.Add(this.txtCodigoEntrenadorBusqueda);
             this.mrcBuscarEntrenador.Location = new System.Drawing.Point(12, 12);
             this.mrcBuscarEntrenador.Name = "mrcBuscarEntrenador";
@@ -132,22 +130,15 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // mskCodigoEntrenadorBusqueda
-            // 
-            this.mskCodigoEntrenadorBusqueda.Location = new System.Drawing.Point(126, 32);
-            this.mskCodigoEntrenadorBusqueda.Mask = "AAAAA";
-            this.mskCodigoEntrenadorBusqueda.Name = "mskCodigoEntrenadorBusqueda";
-            this.mskCodigoEntrenadorBusqueda.Size = new System.Drawing.Size(83, 20);
-            this.mskCodigoEntrenadorBusqueda.TabIndex = 1;
-            this.mskCodigoEntrenadorBusqueda.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mskCodigoEntrenadorBusqueda_MaskInputRejected);
-            this.mskCodigoEntrenadorBusqueda.TextChanged += new System.EventHandler(this.mskCodigoEntrenadorBusqueda_TextChanged);
-            // 
             // txtCodigoEntrenadorBusqueda
             // 
             this.txtCodigoEntrenadorBusqueda.Location = new System.Drawing.Point(134, 32);
+            this.txtCodigoEntrenadorBusqueda.MaxLength = 5;
             this.txtCodigoEntrenadorBusqueda.Name = "txtCodigoEntrenadorBusqueda";
             this.txtCodigoEntrenadorBusqueda.Size = new System.Drawing.Size(75, 20);
             this.txtCodigoEntrenadorBusqueda.TabIndex = 0;
+            this.txtCodigoEntrenadorBusqueda.TextChanged += new System.EventHandler(this.txtCodigoEntrenadorBusqueda_TextChanged);
+            this.txtCodigoEntrenadorBusqueda.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoEntrenadorBusqueda_KeyPress);
             // 
             // txtCodigoEntrenador
             // 
@@ -309,7 +300,6 @@
         private System.Windows.Forms.Label lblCodigoEntrenadorBusqueda;
         private System.Windows.Forms.Button btnBuscarEntrenador;
         private System.Windows.Forms.Button btnSalir;
-        private System.Windows.Forms.MaskedTextBox mskCodigoEntrenadorBusqueda;
         private System.Windows.Forms.TextBox txtCodigoEntrenadorBusqueda;
         private System.Windows.Forms.TextBox txtCodigoEntrenador;
         private System.Windows.Forms.TextBox txtDireccionEntrenador;

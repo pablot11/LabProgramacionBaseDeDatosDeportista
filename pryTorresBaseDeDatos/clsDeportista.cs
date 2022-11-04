@@ -109,7 +109,8 @@ namespace pryTorresBaseDeDatos
         public void Buscar(string varCodigo)
         {
             try
-            {//Recibe la ruta de la BD para conectarse
+            {
+                //Recibe la ruta de la BD para conectarse
                 conexionBd.ConnectionString = varRutaAccesoBD;
                 //Abre la conexion de la BD, es un canal
                 conexionBd.Open();
@@ -157,19 +158,21 @@ namespace pryTorresBaseDeDatos
         {
             try
             {
+                //Instruccion sql
                 string Sql = "DELETE FROM DEPORTISTA WHERE ('" + varCodigoDeportista + "'= [CODIGO DEPORTISTA])";
-                //Conexion a la BD
+
+                //Recibe la ruta de la BD para conectarse
                 conexionBd.ConnectionString = varRutaAccesoBD;
+                //Se conecta a la BD
                 conexionBd.Open();
-
-                //El comando toma la conexion de la BD
+                //El comando toma la conexion
                 comandoBd.Connection = conexionBd;
-                //trae la tabla del access
+                //Se indica el tipo de comando el text es para instrucciones sql
                 comandoBd.CommandType = CommandType.Text;
-               
+                //Se pasa la instruccion sql al comando
                 comandoBd.CommandText = Sql;
+                //ejecuta el comando
                 comandoBd.ExecuteNonQuery();
-
 
                 conexionBd.Close();
             }
@@ -182,20 +185,21 @@ namespace pryTorresBaseDeDatos
 
         public void Modificar(string CDeportista)
         {
+            //Instruccion sql
             string Sql = "UPDATE DEPORTISTA SET [DIRECCION] = '" + Direccion + "', [TELEFONO] = " + Telefono + ", [EDAD] = " + Edad + ", [DEPORTE] = '" + Deporte + "' WHERE [CODIGO DEPORTISTA] = '" + CDeportista + "'";
-            //Conexion a la BD
+            //Recibe la ruta de la BD para conectarse
             conexionBd.ConnectionString = varRutaAccesoBD;
+            //Se conecta a la BD
             conexionBd.Open();
 
-            //El comando toma la conexion de la BD
+            //El comando toma la conexion
             comandoBd.Connection = conexionBd;
-            //trae la tabla del access
+            //Se indica el tipo de comando el text es para instrucciones sql
             comandoBd.CommandType = CommandType.Text;
-         
+            //Se pasa la instruccion sql al comando
             comandoBd.CommandText = Sql;
+            //ejecuta el comando
             comandoBd.ExecuteNonQuery();
-
-
             conexionBd.Close();
             MessageBox.Show("Cambios Guardados");
         }
