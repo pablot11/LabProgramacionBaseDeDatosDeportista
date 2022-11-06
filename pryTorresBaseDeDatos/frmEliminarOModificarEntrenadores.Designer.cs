@@ -99,6 +99,7 @@
             this.mrcBuscarEntrenador.TabIndex = 17;
             this.mrcBuscarEntrenador.TabStop = false;
             this.mrcBuscarEntrenador.Text = "Buscar Entrenador:";
+            this.mrcBuscarEntrenador.Enter += new System.EventHandler(this.mrcBuscarEntrenador_Enter);
             // 
             // lblCodigoEntrenadorBusqueda
             // 

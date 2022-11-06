@@ -125,7 +125,7 @@ namespace pryTorresBaseDeDatos
             //keychar indica si la tecla presionada ya que recoge el numero ascii de la tecla y verifica que no sea numeros,caracteres especiales
             if ((e.KeyChar > 32 && e.KeyChar <= 64) || (e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
             {
-                //El handled nos permite ingresar el valor o sea visualizar la letra
+                //El handled controla el evento y permite que no se muestren los valores
                 e.Handled = true;
             }
         }
@@ -149,7 +149,7 @@ namespace pryTorresBaseDeDatos
             //keychar indica si la tecla presionada ya que recoge el numero ascii de la tecla y verifica que no sea numeros,caracteres especiales
             if ((e.KeyChar > 32 && e.KeyChar <= 64) || (e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
             {
-                //El handled nos permite ingresar el valor o sea visualizar la letra
+                //El handled controla el evento y permite que no se muestren los valores
                 e.Handled = true;
             }
         }
@@ -159,7 +159,7 @@ namespace pryTorresBaseDeDatos
             //keychar indica si la tecla presionada ya que recoge el numero ascii de la tecla y verifica que no sea numeros,caracteres especiales
             if ((e.KeyChar > 32 && e.KeyChar <= 64) || (e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
             {
-                //El handled nos permite ingresar el valor o sea visualizar la letra
+                //El handled controla el evento y permite que no se muestren los valores
                 e.Handled = true;
             }
         }
@@ -174,6 +174,11 @@ namespace pryTorresBaseDeDatos
             {
                 btnBuscarEntrenador.Enabled = false;
             }
+        }
+
+        private void mrcBuscarEntrenador_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
