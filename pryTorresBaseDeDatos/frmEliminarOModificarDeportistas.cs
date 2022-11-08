@@ -83,8 +83,9 @@ namespace pryTorresBaseDeDatos
             ModificarED.Telefono = Convert.ToInt32(mskTelefonoDeportistaModificar.Text);
             ModificarED.Edad = Convert.ToInt32(mskEdadDeportistaModificar.Text);
             ModificarED.Deportes = txtDeporteDeportista.Text;
-            ModificarED.Modificar(CodigoDeportista);
             ModificarED.Telefono = Convert.ToInt32(mskTelefonoDeportistaModificar.Text);
+            ModificarED.Modificar(CodigoDeportista);
+      
             btnModificar.Enabled = true;
             txtCodigoDeportistaBusqueda.ReadOnly = false;
             btnBuscarDeportista.Enabled = true;
